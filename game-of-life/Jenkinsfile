@@ -10,7 +10,7 @@ pipeline{
     stages{
         stage ('scm') {
             steps{
-            git branch: '$(params.BRANCH)'  url: 'https://github.com/venkatesh-pogula/jenkins.git'
+            git branch: '$(params.BRANCH)'  url: 'https://github.com/venkatesh-pogula/CI-CD.git'
             }
         }
         stage ('build') {
