@@ -5,7 +5,7 @@ pipeline{
         pollscm('* * * * *')
     }
     parameters{
-        string (name: 'BRANCH' , defaultvalue: 'master' , description: 'this is setting varibale or parameter for branch')
+        string (name: 'BRANCH' , defaultvalue: 'game-of-file' , description: 'this is setting varibale or parameter for branch')
     }
     stages{
         stage ('scm') {
@@ -16,8 +16,7 @@ pipeline{
         stage ('build') {
             steps{
                 
-                sh '''cd /game-of-life/Jenkinsfile
-                    mvn package'''
+                sh 'mvn package'
             }
             
         }
