@@ -16,7 +16,8 @@ pipeline{
         stage ('build') {
             steps{
                 
-                sh "cd /game-of-life && 'mvn install"
+                sh '''cd /game-of-life/Jenkinsfile
+                    mvn package'''
             }
             
         }
