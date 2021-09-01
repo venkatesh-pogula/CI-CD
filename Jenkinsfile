@@ -2,10 +2,10 @@ pipeline{
     agent { label 'GOL'}
     triggers{
         cron('H * * * *')
-        pollscm('* * * * *')
+        pollSCM('* * * * *')
     }
     parameters{
-        string (name: 'BRANCH' , defaultvalue: 'game-of-file' , description: 'this is setting varibale or parameter for branch')
+        string (name: 'BRANCH' , defaultValue: 'game-of-file' , description: 'this is setting varibale or parameter for branch')
     }
     stages{
         stage ('scm') {
@@ -22,7 +22,7 @@ pipeline{
         }
     }
     post{
-        sucess {
+        success {
             archive '**/gameoflife.war'
             junit '**/TEST-*.xml'
 
