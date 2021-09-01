@@ -29,8 +29,9 @@ pipeline{
             steps{
                 echo env.GIT_URL // it will print the value of git url
                 sh "mvn ${params.GOAL}" // it will excuete the choices any one
+                stash name: 'golwar' ,  includes: '**/gameoflife.war'
             }
-            stash name: 'golwar' ,  includes: '**/gameoflife.war'
+            
         }
         stage('deploy'){
             agent {label 'ANSIBLE'}
