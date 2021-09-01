@@ -6,7 +6,7 @@ pipeline{
     }
     parameters{
         string (name: 'BRANCH' , defaultValue: 'game-of-file' , description: 'this is setting varibale or parameter for branch')
-        choice(name: 'GOAL' , choices: ['package', 'clean package', 'install'], description: 'maven gloas')
+        choice(name: 'GOAL', choices: ['package', 'clean package', 'install'], description: 'maven golas')
     }
     // global environment  variable
     environment{
@@ -37,12 +37,6 @@ pipeline{
         success {
             archive '**/gameoflife.war'
             junit '**/TEST-*.xml'  
-        }
-        always{
-            echo "Finished"
-        }
-        changed{
-            echo "changed"
         }
     }
 }
