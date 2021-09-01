@@ -33,7 +33,7 @@ pipeline{
             stash name: 'golwar' ,  includes: '**/gameoflife.war'
         }
         stage('deploy'){
-            agent (label 'ANSIBLE')
+            agent {label 'ANSIBLE'}
             steps{
                   unstash name: 'golwar' 
             }
