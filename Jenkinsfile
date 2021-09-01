@@ -37,7 +37,7 @@ pipeline{
         success {
             archive '**/gameoflife.war'
             junit '**/TEST-*.xml'
-            mail subject: 'BUILD compelete successfully'+env.BUILD_ID, to: 'venkidevops@gmail.com' , from: 'jenkins@qt.com' , bodt: 'empty'
+            mail subject: 'BUILD compelete successfully'+env.BUILD_ID, to: 'venkidevops@gmail.com' , from: 'jenkins@gmail.com' , body: 'empty'
 
         }
         always{
