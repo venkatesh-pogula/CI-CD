@@ -1,0 +1,45 @@
+
+--- 
+- name: Deploy the springboot application
+  hosts: ubuntu
+  become: yes
+  tasks:
+    - name: update the ubuntu packages and install openjdk-11-jdk
+      apt:
+        name: openjdk-11-jdk
+        update_cache: yes
+        state: present
+    - name: To create the dirctory /usr/share/springpetclinic
+      file:
+        path: /usr/share/springpetclinic
+        state: directory
+    - name: download the springboot
+      get_url:
+        url: https://referenceapplicationskhaja.s3-us-west-2.amazonaws.com/spring-petclinic-2.4.2.jar
+        dest: /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
+        state: present 
+    - name: create the user as springboot
+      user:
+        name: springboot
+        password: springboot
+        state: present 
+    - name: Change the ownership to springboot
+      file: 
+        path:  /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
+        owner: springboot
+        mode: 500
+        state: file
+    - name: copy the springboot.service
+      copy:
+        src: springboot.service
+        dest: /etc/systemd/system/springpetclinic.service
+    - name: enable strat and restart the springboot application 
+      systemd:
+        name: springboot.service
+        enabled: yes
+        state: started
+                     
+
+
+
+
