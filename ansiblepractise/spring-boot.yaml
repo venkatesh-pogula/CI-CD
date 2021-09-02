@@ -10,7 +10,14 @@
     app_download_url: https://referenceapplicationskhaja.s3-us-west-2.amazonaws.com/spring-petclinic-2.4.2.jar
     app_user: springboot
     app_password: springboot
+    test_vars: this is for install java packages
   tasks:
+    - name: Display the javapackages
+      debug:
+        var: java_package
+    - name: checking variable
+      debug:
+        var: test_vars    
     - name: update the ubuntu packages and install openjdk-11-jdk
       apt:
         name: "{{ java_package }}"
