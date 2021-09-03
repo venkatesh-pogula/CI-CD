@@ -3,30 +3,24 @@
 - name: Deploy the springboot application
   hosts: ubuntu
   become: yes
-  vars:
-    java_package: openjdk-11-jdk
-    app_dir: /usr/share/springpetclinic
-    app_dest: /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
-    app_download_url: https://referenceapplicationskhaja.s3-us-west-2.amazonaws.com/spring-petclinic-2.4.2.jar
-    app_user: springboot
-    app_password: springboot
-    test_vars: this is for install java packages
   tasks:
-    - name: Display the javapackages
-      debug:
-        var: java_package
-    - name: checking variable
-      debug:
-        var: test_vars    
+    - name: this for when the distribution is not ubuntu
+      fail:
+        msg: "this playbook will work for ubuntu os..another distrubution will be coming soon"
+      when: ansible_facts['distrubution']!= "ubuntu"
     - name: update the ubuntu packages and install openjdk-11-jdk
       apt:
         name: "{{ java_package }}"
         update_cache: yes
         state: present
+      notify:
+        - debug message for java  
     - name: To create the dirctory /usr/share/springpetclinic
       file:
         path: "{{ app_dir }}"
         state: directory
+      notify:
+        - debug message for create directory      
     - name: download the springboot
       get_url:
         url: "{{ app_download_url }}"
@@ -37,12 +31,8 @@
         name: "{{ app_user }}"
         password: "{{ app_password }}"
         state: present 
-    - name: Change the ownership to springboot
-      file: 
-        path:  "{{ app_dest }}"
-        owner: springboot
-        mode: 500
-        state: file
+      notify:
+        - Change the ownership to springboot 
     - name: copy the springboot.service
       copy:
         src: springboot.service
@@ -52,8 +42,23 @@
         name: springboot.service
         enabled: yes
         state: started
+  handlers:
+    - name: Change the ownership to springboot
+      file: 
+        path:  "{{ app_dest }}"
+        owner: springboot
+        mode: 500
+        state: file
 
+    - name: debug message for java
+      debug:
+       msg: "java with packages {{ java_package }} are installed"
 
+    - name: debug message for create directory
+      debug: 
+        msg: "Directory is created by {{ app_dir }}"    
+
+    
 
 
 
