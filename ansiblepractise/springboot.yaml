@@ -29,12 +29,12 @@
         path: "{{ app_dir }}"
         state: directory
       notify:
-        - debug message for create directory      
-    - name: download the springboot
+        - debug message for create directory
+    - name: Download file from a file path
       get_url:
-        url: "{{ app_download_url }}"
-        dest: "{{ app_file_name }}"
-      
+      url: "{{ app_download_url }}"
+      dest: "{{ app_file_name }}"    
+
     - name: create the user as springboot
       user:
         name: "{{ app_user }}"
@@ -46,7 +46,7 @@
       copy:
         src: springboot.service
         dest: /etc/systemd/system/springpetclinic.service
-    - name: enable strat and restart the springboot application 
+    - name: enable start and restart the springboot application 
       systemd:
         name: springboot.service
         enabled: yes
