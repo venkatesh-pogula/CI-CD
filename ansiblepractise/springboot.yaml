@@ -3,6 +3,13 @@
 - name: Deploy the springboot application
   hosts: all 
   become: yes
+  vars:
+    java_package: openjdk-11-jdk
+    app_dir: /usr/share/springpetclinic
+    app_dest: /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
+    app_download_url: https://referenceapplicationskhaja.s3-us-west-2.amazonaws.com/spring-petclinic-2.4.2.jar
+    app_user: springboot
+    app_password: springboot
   tasks:
     - name: this for when the distribution is not ubuntu
       fail:
