@@ -7,7 +7,7 @@
     - name: this for when the distribution is not ubuntu
       fail:
        msg: "this playbook will work for ubuntu os..another distrubution will be coming soon"
-      when: ansible_facts['distrubution']!= "ubuntu"
+      when: ansible_facts['distrubution'] != "ubuntu"
     - name: update the ubuntu packages and install openjdk-11-jdk
       apt:
         name: "{{ java_package }}"
