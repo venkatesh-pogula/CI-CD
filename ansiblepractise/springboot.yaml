@@ -33,7 +33,6 @@
       get_url:
         url: "{{ app_download_url }}"
         dest: "{{ app_dest }}"
-        state: present 
     - name: create the user as springboot
       user:
         name: "{{ app_user }}"
