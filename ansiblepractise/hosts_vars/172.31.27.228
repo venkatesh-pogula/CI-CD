@@ -1,2 +1,3 @@
 ---
-test_var2: this is from hosts_vars
+test_var2: this is from hosts variable
+
