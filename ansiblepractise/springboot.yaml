@@ -1,7 +1,7 @@
 
 --- 
 - name: Deploy the springboot application
-  hosts: all 
+  hosts: appserver
   become: yes
   vars:
     java_package: openjdk-11-jdk
