@@ -3,23 +3,7 @@
 - name: Deploy the springboot application
   hosts: appserver 
   become: yes
-  vars:
-    java_package: openjdk-11-jdk
-    app_dir: /usr/share/springpetclinic
-    app_download_url: https://referenceapplicationskhaja.s3-us-west-2.amazonaws.com/spring-petclinic-2.4.2.jar
-    app_file_name: /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
-    app_user: springboot
-    app_password: springboot
-
   tasks:
-    - name: vars are used by another floder
-      debug:
-        var: test_var1
-       
-    - name: this is used for h_vars
-      debug:
-        var: test_var2    
-
     - name: this for when the distribution is not ubuntu
       fail:
        msg: "this playbook will work for ubuntu os another distrubution will be coming soon"
