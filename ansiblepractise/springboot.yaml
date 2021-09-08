@@ -49,8 +49,11 @@
     - name: enable start and restart the springboot application 
       systemd:
         name: springboot.service
+        state: restarted
         enabled: yes
-        state: started
+        
+      
+
   handlers:
     - name: Change the ownership to springboot
       file: 
