@@ -20,9 +20,8 @@
       file:
         path: "{{ app_dir }}"
         state: directory
-    - name: debug message for create directory
-      debug: 
-        msg: "Directory is created by {{ app_dir }}"
+      notify:
+        - debug message for create directory  
     - name: Download file from a file path
       get_url:
        url: "{{ app_download_url }}"
@@ -55,6 +54,10 @@
     - name: debug message for java
       debug:
        msg: "java with packages {{ java_package }} are installed"
+
+    - name: debug message for create directory
+      debug: 
+        msg: "Directory is created by {{ app_dir }}"   
 
 
   
