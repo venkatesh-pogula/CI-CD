@@ -18,8 +18,8 @@
        
     - name: this is used for h_vars
       debug:
-        var: test-var2    
-        
+        var: test_var2    
+
     - name: this for when the distribution is not ubuntu
       fail:
        msg: "this playbook will work for ubuntu os another distrubution will be coming soon"
