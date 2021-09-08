@@ -14,10 +14,8 @@
         name: "{{ java_package }}"
         update_cache: yes
         state: present
-    - name: debug message for java
-      debug:
-       msg: "java with packages {{ java_package }} are installed"
-
+      notify:
+        - debug message for java 
     - name: To create the dirctory /usr/share/springpetclinic
       file:
         path: "{{ app_dir }}"
@@ -52,6 +50,12 @@
         name: springboot.service
         state: reloaded
         enabled: yes
+
+  handlers:
+    - name: debug message for java
+      debug:
+       msg: "java with packages {{ java_package }} are installed"
+
 
   
 
