@@ -12,6 +12,14 @@
     app_password: springboot
 
   tasks:
+    - name: vars are used by another floder
+      debug:
+        var: test_var1
+       
+    - name: this is used for h_vars
+      debug:
+        var: test-var2    
+        
     - name: this for when the distribution is not ubuntu
       fail:
        msg: "this playbook will work for ubuntu os another distrubution will be coming soon"
@@ -58,7 +66,7 @@
     - name: enable start and restart the springboot application 
       systemd:
         name: springboot.service
-        state: restarted
+        state: reloaded
         enabled: yes
 
   
