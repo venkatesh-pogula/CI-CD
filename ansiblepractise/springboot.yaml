@@ -1,7 +1,7 @@
 
 --- 
 - name: Deploy the springboot application
-  hosts: appserver
+  hosts: all 
   become: yes
   vars:
     java_package: openjdk-11-jdk
@@ -49,9 +49,9 @@
     - name: enable start and restart the springboot application 
       systemd:
         name: springboot.service
-        state: restarted
+        state: started
         enabled: yes
-        
+
       
 
   handlers:
