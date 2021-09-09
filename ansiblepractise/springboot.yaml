@@ -1,7 +1,7 @@
 
 --- 
 - name: Deploy the springboot application
-  hosts: appserver 
+  hosts: all 
   become: yes
   tasks:
     - name: this for when the distribution is not ubuntu and cenos 
