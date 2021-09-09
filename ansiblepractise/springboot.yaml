@@ -8,6 +8,7 @@
       fail:
        msg: "this playbook will work for ubuntu os another distrubution will be coming soon"
       when: ansible_facts['distribution'] != "Ubuntu"  and ansible_facts['distribution'] != "CentOS"
+      
     - name:  packages and install openjdk-11-jdk for ubuntu and centos
       package:
         name: "{{ java_package }}"
