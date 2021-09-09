@@ -9,19 +9,11 @@
        msg: "this playbook will work for ubuntu os another distrubution will be coming soon"
       when: ansible_facts['distribution'] != "Ubuntu"  and ansible_facts['distribution'] != "CentOS"
 
-    - name: update the ubuntu packages and install openjdk-11-jdk
-      apt:
+    - name:  packages and install openjdk-11-jdk for ubuntu and centos
+      package:
         name: "{{ java_package }}"
-        update_cache: yes
-        state: present
-      notify:
-        - debug message for java 
-      when: ansible_facts['distribution'] == "Ubuntu" 
-    - name: java installation for centos
-      yum:
-        name: "{{ java_package }}"
-        state: present
-      when: ansible_facts['distribution'] == "CentOS"
+        state: present 
+        
     - name: To create the dirctory /usr/share/springpetclinic
       file:
         path: "{{ app_dir }}"
