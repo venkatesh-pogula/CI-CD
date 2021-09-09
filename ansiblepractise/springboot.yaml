@@ -4,10 +4,10 @@
   hosts: appserver 
   become: yes
   tasks:
-    - name: this for when the distribution is not ubuntu
+    - name: this for when the distribution is not ubuntu and cenos 
       fail:
        msg: "this playbook will work for ubuntu os another distrubution will be coming soon"
-      when: ansible_facts['distribution'] != "Ubuntu"  
+      when: ansible_facts['distribution'] != "Ubuntu"  and ansible_facts['distribution'] != "CentOS"
 
     - name: update the ubuntu packages and install openjdk-11-jdk
       apt:
@@ -16,6 +16,12 @@
         state: present
       notify:
         - debug message for java 
+      when: ansible_facts['distribution'] == "Ubuntu" 
+    - name: java installation for centos
+      yum:
+        name: "{{ java_package }}"
+        state: present
+      when: ansible_facts['distribution'] == "CentOS"
     - name: To create the dirctory /usr/share/springpetclinic
       file:
         path: "{{ app_dir }}"
@@ -47,19 +53,18 @@
     - name: enable start and restart the springboot application 
       systemd:
         name: springboot.service
-        state: reloaded
         enabled: yes
-
+        state: started
   handlers:
     - name: debug message for java
       debug:
-       msg: "java with packages {{ java_package }} are installed"
+        msg: "java with packages {{ java_package }} are installed"
 
     - name: debug message for create directory
       debug: 
         msg: "Directory is created by {{ app_dir }}"   
 
-
+    
   
 
 
