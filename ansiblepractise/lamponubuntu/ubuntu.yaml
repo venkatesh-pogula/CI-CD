@@ -34,7 +34,7 @@
      service:
       name: "{{ apache_package }}"
       enabled: yes
-      state: present 
+      state: restarted
 
         
   handlers:
