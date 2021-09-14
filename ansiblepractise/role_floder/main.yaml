@@ -1,0 +1,7 @@
+--- 
+- name: install or depoly the lamp server
+  become: yes
+  hosts: appserver
+  roles:
+    - lamponubuntu
+    

@@ -1,0 +1,33 @@
+---
+- name: this for when the distribution is not ubuntu and cenos 
+  fail:
+    msg: "this playbook will work for ubuntu os another distrubution will be coming soon"
+  when: ansible_facts['distribution'] != "Ubuntu"  and ansible_facts['distribution'] != "CentOS"
+
+- name: update and install the ubuntu packages and apache2
+  package:
+    name: "{{ apache_package }}"
+    state: present 
+  notify:
+    - installed the apcache server
+    - installed the httpd server 
+
+- name: install the php libapache2-mod-php php-mysql php-cli
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ php_packages }}"  
+
+- name: create the file with name of /var/www/html/info.php in content of <?php phpinfo(); ?>
+  copy:
+    src: info.php 
+    dest: "{{ info_php_path }}"
+  notify:
+    - log the php.info 
+    - restart the service of httpd
+
+- name: enable service
+  service:
+    name: "{{ apache_package }}"
+    enabled: yes
+    state: restarted

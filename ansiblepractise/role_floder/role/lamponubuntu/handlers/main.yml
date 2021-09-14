@@ -1,0 +1,18 @@
+---
+# handlers file for role_skeleton
+- name: installed the apcache server
+  debug:
+    msg: "installed are {{ apache_package }}"
+
+- name: installed the httpd server
+  debug:
+    msg: "installed are {{ apache_package }}" 
+
+- name: log the php.info
+  debug:
+    msg: "copied the content into {{ info_php_path }}"  
+        
+- name: restart the service of httpd
+  service:
+    name: "{{ apache_package }}"
+    state: restarted
