@@ -11,7 +11,7 @@ service sshd restart
 
 
 yum install httpd php git -y
-git clone https://github.com/ajish-antony/ansible-website.git /var/git/
+git clone https://github.com/venkatesh-pogula/CI-CD.git /var/git/
 cp -pr /var/git/* /var/www/html/
 rm -rf /var/www/html/.git
 service httpd restart

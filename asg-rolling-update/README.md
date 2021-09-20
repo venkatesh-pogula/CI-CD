@@ -172,19 +172,21 @@ alt_txt
 
 ```sh
 ---
-region: "us-east-1"
+region: ""
 tag_name: "asg-01"
-private_key: "work.pem"
+private_key: ""
 health_time: 25
-gitRepository: "https://github.com/ajish-antony/ansible-website.git"
+gitRepository: "https://github.com/venkatesh-pogula/CI-CD.git"
 clonDir: /var/git/
 ```
 Also here I have provided sample user data for the instances if creating for the first time in the autoscaling or can be made use for the AMI creation.
 
 ```sh
 #!/bin/bash
+# sudo apt update
+# sudo apt install apache2 -y
 yum install httpd php git -y
-git clone https://github.com/ajish-antony/ansible-website.git /var/git/
+git clone https://github.com/venkatesh-pogula/CI-CD.git /var/git/
 cp -pr /var/git/* /var/www/html/
 service httpd restart
 chkconfig httpd on
@@ -295,8 +297,4 @@ Here was the project that has managed to deploy in the ASG rolling method with t
 
 
 
-### ⚙️ Connect with Me
 
-<p align="center">
-<a href="mailto:ajishantony95@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/></a>
-<a href="https://www.linkedin.com/in/ajish-antony/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
