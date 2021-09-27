@@ -1,0 +1,38 @@
+--- 
+- name: "To bulid the Docker container with docker image python flask"
+  hosts: appserver
+  become: yes
+
+  tasks:
+  - name: "To install the pip and git"
+    apt:
+      - pip 
+      - git 
+    state: present 
+
+  - name: "To intsall the Docker-py"
+    pip:
+      name: docker-py  
+      state: present 
+
+  - name: "To install the Docker"
+    shell: amazon-linux-extras install docker -y
+
+  - name: "starting and enbale the Docker service"
+    service:
+     name: docker
+     state: restarted
+     enbled: yes
+
+  - name: "pulling the image from Docker hub"
+    docker_image:
+     name: "{{ docker_image_name }}"
+     source: pull  
+  - name: "To create the Docker container by using pull image"
+    docker_container:
+      name: "{{ docker_container_name }}" 
+      image: "{{ docker_image_name }}"
+      detach: yes
+      restart_policy: always
+      ports: "{{ docker_container_ports }}"
+

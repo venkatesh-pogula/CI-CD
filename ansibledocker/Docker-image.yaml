@@ -1,0 +1,53 @@
+--- 
+name: "To create the docker image using ansible"
+hosts: appserver
+become: yes
+tasks:
+ - name: "To install the git and pip for create docker"
+   apt:
+     name:
+      - pip 
+      - git
+     state: present 
+ - name: "installing docker-apy"
+   pip:
+    name: docker-py
+    state: present 
+
+ - name: "cloning the git repo"
+   git:
+     repo: "{{ git_repo_url }}"
+     dest: "{{ git_clone }}"
+   register: repo_status  
+
+ - name: "install the docker"
+   shell: amazon-linux-extras install docker -y 
+   
+ - name: "Docker service strat and enble" 
+   service:
+     name: docker
+     state: restarted
+     enabled: yes
+
+ - name: "docker login"
+   docker login:
+    username: "{{ docker_id }}"
+    password: "{{ docker_password }}"
+ - name: "build the python image"
+   docker_image:
+    source: build
+    build:
+      path: "{{ git_clone }}"
+    name: "{{ docker_image_name }}"
+    tag: latest
+    push: yes  
+ - name: "Removing image Created"
+   docker_image:
+    state: absent
+    name: "{{ docker_image_name }}"
+    tag: "{{ item }}"
+   with_items:
+     - "{{ repo_status.after }}" 
+     - lastest
+
+
