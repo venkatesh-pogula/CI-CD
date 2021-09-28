@@ -1,0 +1,8 @@
+{
+    "aws_intance_type": "t2.micro",
+    "aws_security_group_id": "sg-00cc49ee1699bedd4",
+    "aws_source_ami": "ami-090717c950a5c34d3",
+    "aws_region": "us-west-2",
+    "aws_user_name": "ubuntu"
+
+}
