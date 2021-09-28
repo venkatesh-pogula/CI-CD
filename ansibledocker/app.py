@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
 
-  return '<h1><center>FlaskApplication - Version - 23</center></h1>'
+  return '<h1><center>If all are congigure correct then it will show this message</center></h1>'
 
 if __name__ == '__main__':
 
