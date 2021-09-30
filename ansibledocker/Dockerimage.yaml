@@ -2,6 +2,14 @@
 - name: "To create the docker image using ansible"
   hosts: appserver
   become: yes
+  vars:
+    git_repo_url: "https://github.com/venkatesh-pogula/CI-CD.git"
+    git_clone: "/var/git/" 
+    docker_id: "pvenkateswarrao"
+    docker_password: "Pogula@143"
+    docker_image_name: "pvenkateswarrao/Python-flask"
+    docker_container_ports: "8081:5000"
+    docker_container_name: "python"
   tasks:
    - name: "To install the git and pip for create docker"
      apt:
@@ -32,7 +40,7 @@
      docker_login:
         username: "{{docker_username}}"
         password: "{{docker_password}}"    
-        
+
    - name: "build the python image"
      docker_image:
       source: build
