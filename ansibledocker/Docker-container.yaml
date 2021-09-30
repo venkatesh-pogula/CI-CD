@@ -1,7 +1,11 @@
 --- 
 - name: "To bulid the Docker container with docker image python flask"
-  hosts: appserver
+  hosts: localhost
   become: yes
+  vars:
+     docker_image_name: "pvenkateswarrao/Python-flask"
+     docker_container_ports: "8081:5000"
+     docker_container_name: "python"
 
   tasks:
   - name: "To install the pip and git"

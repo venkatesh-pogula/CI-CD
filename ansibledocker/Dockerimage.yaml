@@ -1,6 +1,6 @@
 --- 
 - name: "To create the docker image using ansible"
-  hosts: appserver
+  hosts: localhost
   become: yes
   vars:
     git_repo_url: "https://github.com/venkatesh-pogula/CI-CD.git"
