@@ -28,11 +28,11 @@
        name: docker
        state: restarted
        enabled: yes
-
-   - name: "docker login"
-     docker login:
-        username: "{{ docker_id }}"
-        password: "{{ docker_password }}"
+   - name: "Log into DockerHub"
+     docker_login:
+        username: "{{docker_username}}"
+        password: "{{docker_password}}"    
+        
    - name: "build the python image"
      docker_image:
       source: build
